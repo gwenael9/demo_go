@@ -1,25 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+// func main() {
+// 	var lang string
+// 	// par défaut : en
+// 	flag.StringVar(&lang, "lang", "en", "The required language, es, en, fr...")
+// 	flag.Parse()
+
+// 	greeting, err := greeter.Greet(greeter.Language(lang))
+// 	if err != nil {
+// 		log.Fatalf("Error greeting : %v", err)
+// 	}
+// 	fmt.Println(greeting)
+// }
 
 func main() {
-	var lang language = "fr"
-	greeting := greet(lang)
-	fmt.Println(greeting)
-}
+	reader := bufio.NewReader((os.Stdin))
+	fmt.Print("Votre choix : ")
 
-type language string
-
-var phraseBook = map[language]string{
-	"fr": "Bonjour",
-	"en": "Hello",
-	"es": "Hola",
-}
-
-func greet(l language) string {
-	greeting, ok := phraseBook[l]
-	if !ok {
-		return fmt.Sprintf("Unsupported language: %q", l)
-	}
-	return greeting
+	input, _ := reader.ReadString('\n')
+	fmt.Println(input)
 }

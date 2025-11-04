@@ -10,10 +10,10 @@ var phraseBook = map[Language]string{
 	"es": "Hola",
 }
 
-func greet(l Language) string {
+func Greet(l Language) (string, error) {
 	greeting, ok := phraseBook[l]
 	if !ok {
-		return fmt.Sprintf("Unsupported language: %q", l)
+		return "", fmt.Errorf("unsupported language: %q", l)
 	}
-	return greeting
+	return greeting, nil
 }
